@@ -90,7 +90,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import ReviewCard from './ReviewCard.vue';
+import { fetchReviews } from '@/services/fetchReviews';
+import { computed, ref, onMounted } from 'vue';
 
 const filtersOpen = ref(false)
 const industryOpen = ref(false)
@@ -98,6 +100,29 @@ const useCaseOpen = ref(false)
 
 const selectedIndustry = ref('All')
 const selectedUseCase = ref('All')
+
+interface Author {
+  name: string
+  avatar?: string
+  jobTitle?: string
+  company?: string
+  industry?: string
+  linkedin?: string
+}
+
+interface Review {
+  title: string
+  body: string[]
+  author: Author
+  useCases?: string[]
+  rating?: number
+  source?: {
+    name: string
+    url: string
+  }
+}
+
+const reviews = ref<Review[]>([])
 
 const useCaseOptions = [
     'All',
@@ -153,6 +178,10 @@ function clearFilters() {
     selectedIndustry.value = 'All'
     selectedUseCase.value = 'All'
 }
+
+onMounted(async () => {
+    reviews.value = await fetchReviews()
+})
 
 </script>
 
