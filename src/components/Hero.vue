@@ -57,7 +57,7 @@
     width: 2000px;
     left: 0;
     top: 50%;
-    transform: translate(-25%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .hero__container{
@@ -83,9 +83,9 @@
 }
 
 .hero__title{
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
-    line-height: 56px;
+    line-height: 74px;
     color: rgba(255, 255, 255, 0.75);
     margin: 0;
 }
@@ -96,7 +96,7 @@
 
 .hero__description{
     color: rgba(255, 255, 255, 0.55); 
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 1.6;
     margin: 0;
 }

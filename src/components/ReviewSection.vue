@@ -19,6 +19,14 @@
                             </template>
                         </span>
                     </button>
+                    <button 
+                        v-if="activeFiltersCount > 0"
+                        class="filter-clear-btn"
+                        @click="clearFilters">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="filter-btn__icon">
+                            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                        </svg>
+                    </button>
                 </div>
             </div>
             <div class="filters" :class="{'filters--open' : filtersOpen}">
@@ -127,13 +135,13 @@ const activeFiltersCount = computed(() => {
     return count
 })
 
+function toggleFilters() {
+    filtersOpen.value = !filtersOpen.value
+}
+
 function selectIndustry(industry: string) {
     selectedIndustry.value = industry
     industryOpen.value = false
-}
-
-function toggleFilters() {
-    filtersOpen.value = !filtersOpen.value
 }
 
 function selectUseCase(useCase: string) {
@@ -141,12 +149,16 @@ function selectUseCase(useCase: string) {
     useCaseOpen.value = false
 }
 
+function clearFilters() {
+    selectedIndustry.value = 'All'
+    selectedUseCase.value = 'All'
+}
+
 </script>
 
 <style scoped>
 .reviews {
     background-color: #171717;
-    padding: 40px 24px;
 }
 
 .reviews__container {
@@ -154,6 +166,7 @@ function selectUseCase(useCase: string) {
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
+    padding: 40px 24px;
 }
 
 .filter-btn {
@@ -295,6 +308,18 @@ function selectUseCase(useCase: string) {
 
 .dropdown__item--selected {
   background: #404040;
+}
+
+.filter-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 8px;
+    margin-left: 2px;
+    border: none;
+    border-radius: 6px;
+    background: #4192f4;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
 }
 
 @media (min-width: 640px) {
