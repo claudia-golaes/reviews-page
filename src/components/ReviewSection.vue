@@ -10,7 +10,14 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="filter-btn__icon">
                             <path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 0 1 .628.74v2.288a2.25 2.25 0 0 1-.659 1.59l-4.682 4.683a2.25 2.25 0 0 0-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 0 1 8 18.25v-5.757a2.25 2.25 0 0 0-.659-1.591L2.659 6.22A2.25 2.25 0 0 1 2 4.629V2.34a.75.75 0 0 1 .628-.74Z" clip-rule="evenodd"/>
                         </svg>
-                        Filters
+                        <span class="filter-btn__label">
+                            <template v-if="activeFiltersCount > 0">
+                                {{ activeFiltersCount }} <span class="filter-btn__text">{{ activeFiltersCount === 1 ? 'Filter' : 'Filters' }}</span>
+                            </template>
+                            <template v-else>
+                                <span class="filter-btn__text">Filters</span>
+                            </template>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -75,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const filtersOpen = ref(false)
 const industryOpen = ref(false)
@@ -83,10 +90,6 @@ const useCaseOpen = ref(false)
 
 const selectedIndustry = ref('All')
 const selectedUseCase = ref('All')
-
-function toggleFilters() {
-    filtersOpen.value = !filtersOpen.value
-}
 
 const useCaseOptions = [
     'All',
@@ -117,9 +120,20 @@ const industryOptions = [
     'Miscellaneous'
 ]
 
+const activeFiltersCount = computed(() => {
+    let count = 0;
+    if (selectedIndustry.value !== 'All') count++
+    if (selectedUseCase.value !== 'All') count++
+    return count
+})
+
 function selectIndustry(industry: string) {
     selectedIndustry.value = industry
     industryOpen.value = false
+}
+
+function toggleFilters() {
+    filtersOpen.value = !filtersOpen.value
 }
 
 function selectUseCase(useCase: string) {
@@ -169,6 +183,18 @@ function selectUseCase(useCase: string) {
 .filter-btn--active{
     background: #4192f4;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.filter-btn__label{
+    display: none;
+}
+
+.filter-btn--active .filter-btn__label{
+    display: inline;
+}
+
+.filter-btn__text{
+    display: none;
 }
 
 .filters {
@@ -284,6 +310,16 @@ function selectUseCase(useCase: string) {
 
     .filters__group {
         width: 256px;
+    }
+}
+
+@media (min-width: 768px) {
+    .filter-btn__label{
+        display: inline;
+    }
+
+    .filter-btn__text{
+        display: inline;
     }
 }
 
