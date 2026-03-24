@@ -85,6 +85,12 @@
                     </div>
                 </div>
             </div>
+            <div class="reviews__grid">
+                <ReviewCard 
+                    v-for="(review, index) in reviews" 
+                    :key="index" 
+                    :review="review" />
+            </div>
         </div>
     </section>
 </template>
