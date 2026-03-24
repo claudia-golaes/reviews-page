@@ -357,6 +357,13 @@ onMounted(async () => {
     cursor: pointer;
 }
 
+.reviews__grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
 @media (min-width: 640px) {
     .filters{
         display: none;
@@ -383,5 +390,10 @@ onMounted(async () => {
     }
 }
 
+@media (min-width: 1024px) {
+    .reviews__grid {
+        grid-template-columns: 1fr, 1fr;
+    }
+}
 </style>
 
