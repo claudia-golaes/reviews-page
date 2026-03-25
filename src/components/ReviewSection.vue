@@ -85,11 +85,15 @@
                     </div>
                 </div>
             </div>
-            <div class="reviews__grid">
+            <div class="reviews__grid" v-if="filteredReviews.length > 0">
                 <ReviewCard 
                     v-for="(review, index) in filteredReviews" 
                     :key="index" 
                     :review="review" />
+            </div>
+            <div v-else class="empty-state" aria-live="polite">
+                <p>You've filtered our reviews list out of existence... :)</p>
+                <p>Please change or reduce the number of filters from the controls above!</p>
             </div>
         </div>
     </section>
@@ -370,6 +374,17 @@ onMounted(async () => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+}
+
+.empty-state {
+    margin-top: 40px auto;
+    max-width: 80rem;
+    padding: 40px 64px;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 @media (min-width: 640px) {
