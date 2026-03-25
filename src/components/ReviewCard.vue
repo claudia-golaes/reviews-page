@@ -96,7 +96,16 @@
                         <a
                             v-if="review.source" :href="review.source.url"
                             class="card__source-link">
-                            {{ review.source.name }}
+                            <img
+                                v-if="review.source.name === 'G2'"
+                                src="../../public/g2.svg"
+                                alt="G2 Review"
+                                loading="lazy"
+                                width="32"
+                                height="32"
+                                class="card__source-img"
+                            />
+                            <span v-else> {{ review.source.name }} </span>
                         </a>
                     </div>  
                 </div>
