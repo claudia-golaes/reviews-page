@@ -87,7 +87,7 @@
             </div>
             <div class="reviews__grid">
                 <ReviewCard 
-                    v-for="(review, index) in reviews" 
+                    v-for="(review, index) in filteredReviews" 
                     :key="index" 
                     :review="review" />
             </div>
@@ -164,6 +164,14 @@ const activeFiltersCount = computed(() => {
     if (selectedIndustry.value !== 'All') count++
     if (selectedUseCase.value !== 'All') count++
     return count
+})
+
+const filteredReviews = computed(() => {
+    return reviews.value.filter(review => {
+        const matchesIndustry = selectedIndustry.value === 'All' || (review.author.industry && review.author.industry === selectedIndustry.value)
+        const matchesUseCase = selectedUseCase.value === 'All' || (review.useCases && review.useCases.includes(selectedUseCase.value))
+        return matchesIndustry && matchesUseCase
+    })
 })
 
 function toggleFilters() {
