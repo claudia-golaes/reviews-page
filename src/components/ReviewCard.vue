@@ -87,7 +87,7 @@
                                 v-for="i in review.rating"
                                 :key="i"
                                 xmlns="http://www.w3.org/2000/svg"
-                                view-box="0 0 24 24"
+                                viewBox="0 0 24 24"
                                 fill="currentColor"
                                 class="card__star">
                                 <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
@@ -131,3 +131,258 @@ const props = defineProps<{
 
 const isExpanded = ref(false);
 </script>
+
+<style scoped>
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #222222;
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.card__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 32px;
+    gap: 16px;
+}
+
+.card__quote {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card__quote-img {
+    width: 72px;
+    height: auto;
+}
+
+.card__title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 28px;
+    flex-grow: 1;
+}
+
+.card__content {
+    flex: 1;
+}
+
+.card__text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.card__text--expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+}
+
+.card__paragraph {
+    margin: 0 0 8px 0;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.card__read-more {
+    margin-top: 12px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0;
+}
+
+.card__read-more:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.card__author {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.card__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card__linkedin-icon {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.card__author-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.card__author-job {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.card__avatar-img {
+    width: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.card__avatar--desktop {
+    display: none;
+}
+
+.card__avatar--mobile {
+    display: block;
+}
+
+.card__footer {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 24px;
+    gap: 24px;
+}
+
+.card__footer-label {
+    margin: 0 0 12px 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.card__tag {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 4px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.card__footer--source {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__source {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.card__stars {
+    display:flex;
+}
+
+.card__star {
+    width: 14px;
+    height: auto;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.card__source-link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+    .card {
+        padding: 24px;
+    }
+
+    .card__header {
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        gap: 48px;
+    }
+
+    .card__quote {
+        flex: 0 0 auto;
+        width: 128px;
+        align-items: flex-start;
+    }
+
+    .card__quote-img {
+        width: 128px;
+    }
+
+    .card__title {
+        font-size: 1.5rem;
+    }
+
+    .card__footer {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+    .card__body {
+        flex-direction: row;
+        flex-grow: 1;
+    }
+
+    .card__author {
+        margin-top: 48px;
+    }
+
+    .card__avatar--desktop {
+        display: block;
+    }
+
+    .card__avatar--mobile {
+        display: none;
+    }
+
+    .card__avatar-img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .card__star {
+        width: 20px;
+    }
+}
+
+</style>

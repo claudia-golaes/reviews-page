@@ -360,7 +360,7 @@ onMounted(async () => {
 .reviews__grid {
     margin-top: 32px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
