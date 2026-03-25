@@ -83,9 +83,9 @@
 }
 
 .hero__title{
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
-    line-height: 74px;
+    line-height: 56px;
     color: rgba(255, 255, 255, 0.75);
     margin: 0;
 }
@@ -174,6 +174,5 @@
     min-height: 100vh;
   }
 }
-
 
 </style>

@@ -50,80 +50,79 @@
                             class="card__avatar-img"
                         />
                     </div>
-                    <div v-if="review.author.avatar" class="card__avatar card__avatar--desktop">
-                        <img
-                            :src="review.author.avatar"
-                            :alt="`Review author: ${review.author.name}`"
-                            loading="lazy"
-                            class="card__avatar-img"
-                        />
-                    </div>
-                </div>
-
-                <!-- footer: 1st type-->
-                <div v-if="review.useCases" class="card__footer">
-                    <div class="card__use-cases">
-                        <p class="card__footer-label">USE CASES</p>
-                        <ul class="card__tags">
-                            <li v-for="useCase in review.useCases" :key="useCase" class="card__tag">
-                                {{ useCase }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div v-if="review.author.industry" class="card__industry">
-                        <p class="card__footer-label">INDUSTRY</p>
-                        <span class="card__tag">
-                            {{ review.author.industry }}
-                        </span>
-                    </div>
-                </div> 
-                
-                <!-- footer: 2nd type-->
-                <div v-else-if="review.rating" class="card__footer card__footer--source">
-                    <p class="card__footer-label">SOURCE</p>
-                    <div class="card__source">
-                        <div class="card__stars">
-                            <svg 
-                                v-for="i in fullStars"
-                                :key="'full' + i"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                class="card__star">
-                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
-                            </svg>
-                            <svg 
-                                v-if="hasHalfStar"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                class="card__star">
-                                <defs>
-                                    <linearGradient id="halfGradient">
-                                        <stop offset="50%" stop-color="currentColor" />
-                                        <stop offset="50%" stop-color="#595959" />
-                                    </linearGradient>
-                                </defs>
-                                <path fill="url(#halfGradient)" fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <a
-                            v-if="review.source" :href="review.source.url"
-                            class="card__source-link">
-                            <img
-                                v-if="review.source.name === 'G2'"
-                                src="../../public/g2.svg"
-                                alt="G2 Review"
-                                loading="lazy"
-                                width="32"
-                                height="32"
-                                class="card__source-img"
-                            />
-                            <span v-else> {{ review.source.name }} </span>
-                        </a>
-                    </div>  
                 </div>
             </div>
+            <div v-if="review.author.avatar" class="card__avatar card__avatar--desktop">
+                <img
+                    :src="review.author.avatar"
+                    :alt="`Review author: ${review.author.name}`"
+                    loading="lazy"
+                    class="card__avatar-img"
+                />
+            </div>
+        </div>
+        <!-- footer: 1st type-->
+        <div v-if="review.useCases" class="card__footer">
+            <div class="card__use-cases">
+                <p class="card__footer-label">USE CASES</p>
+                <ul class="card__tags">
+                    <li v-for="useCase in review.useCases" :key="useCase" class="card__tag">
+                        {{ useCase }}
+                    </li>
+                </ul>
+            </div>
+            <div v-if="review.author.industry" class="card__industry">
+                <p class="card__footer-label">INDUSTRY</p>
+                <span class="card__tag">
+                    {{ review.author.industry }}
+                </span>
+            </div>
+        </div> 
+        
+        <!-- footer: 2nd type-->
+        <div v-else-if="review.rating" class="card__footer card__footer--source">
+            <p class="card__footer-label">SOURCE</p>
+            <div class="card__source">
+                <div class="card__stars">
+                    <svg 
+                        v-for="i in fullStars"
+                        :key="'full' + i"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="card__star">
+                        <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                    </svg>
+                    <svg 
+                        v-if="hasHalfStar"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="card__star">
+                        <defs>
+                            <linearGradient id="halfGradient">
+                                <stop offset="50%" stop-color="currentColor" />
+                                <stop offset="50%" stop-color="#595959" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#halfGradient)" fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <a
+                    v-if="review.source" :href="review.source.url"
+                    class="card__source-link">
+                    <img
+                        v-if="review.source.name === 'G2'"
+                        src="../../public/g2.svg"
+                        alt="G2 Review"
+                        loading="lazy"
+                        width="32"
+                        height="32"
+                        class="card__source-img"
+                    />
+                    <span v-else> {{ review.source.name }} </span>
+                </a>
+            </div>  
         </div>
     </div>
 </template>
@@ -291,6 +290,7 @@ const isExpanded = ref(false);
 }
 
 .card__footer {
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
